@@ -167,10 +167,10 @@ export class ImportService {
       })
 
       const totalRows = records.length
-      const anomaliesCount = records.reduce((acc, r) => acc + (r.importAnomalies?.length || 0), 0)
-      const blockedCount = records.filter((r) => r.status === 'PENDING').length
-      const pendingReviewCount = records.filter((r) => (r.importAnomalies?.length || 0) > 0).length
-      const validCount = records.filter((r) => r.status === 'READY_TO_IMPORT').length
+      const anomaliesCount = records.reduce((acc: number, r: typeof records[number]) => acc + (r.importAnomalies?.length || 0), 0)
+      const blockedCount = records.filter((r: typeof records[number]) => r.status === 'PENDING').length
+      const pendingReviewCount = records.filter((r: typeof records[number]) => (r.importAnomalies?.length || 0) > 0).length
+      const validCount = records.filter((r: typeof records[number]) => r.status === 'READY_TO_IMPORT').length
 
       const importTimestamp = new Date().toISOString()
 
@@ -215,7 +215,7 @@ export class ImportService {
       lines.push(`- Pending Review Records: ${pendingReviewCount}`)
       lines.push(`- Blocked Records: ${blockedCount}`)
       lines.push('- Settlements Created: 0')
-      lines.push(`- Duplicate Records Flagged: ${records.reduce((acc, r) => acc + (r.importAnomalies?.filter((x:any) => x.type === 'NEAR_DUPLICATE' || x.type === 'CONFLICTING_DUPLICATE').length || 0), 0)}`)
+      lines.push(`- Duplicate Records Flagged: ${records.reduce((acc: number, r: typeof records[number]) => acc + (r.importAnomalies?.filter((x: any) => x.type === 'NEAR_DUPLICATE' || x.type === 'CONFLICTING_DUPLICATE').length || 0), 0)}`)
       lines.push('')
       lines.push('## Importer Policies Applied')
       lines.push('')
