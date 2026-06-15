@@ -10,6 +10,7 @@ model User {
   id                  String               @id @default(uuid())
   email               String               @unique
   name                String
+  passwordHash        String
   createdAt           DateTime             @default(now())
   updatedAt           DateTime             @updatedAt
   memberships         GroupMember[]
@@ -137,7 +138,7 @@ model ImportRecord {
   id              String         @id @default(uuid())
   importSessionId String
   rawData         Json
-  status          RecordStatus   @default(PENDING)
+  status          RecordStatus   @default(PENDING_REVIEW)
 
   session    ImportSession   @relation(fields: [importSessionId], references: [id], onDelete: Cascade)
   anomalies  ImportAnomaly[]
