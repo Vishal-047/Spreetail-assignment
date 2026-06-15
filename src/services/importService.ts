@@ -1,7 +1,9 @@
-import { PrismaClient, Prisma } from '@prisma/client'
+import prismaPkg from '@prisma/client'
 import type { AnomalyType } from '../types/anomaly'
 import { parse } from 'csv-parse/sync'
 import { detectAnomalies, RawImportRow, Context, normalizeName } from './anomalyDetectionEngine'
+
+const PrismaClient = (prismaPkg as any).PrismaClient
 
 const prisma = new PrismaClient()
 
@@ -74,7 +76,7 @@ export class ImportService {
       const record = await prisma.importRecord.create({
         data: {
           importSessionId: session.id,
-          rawData: row as unknown as Prisma.JsonObject,
+          rawData: row as unknown as Record<string, any>,
           status: 'PENDING',
         },
       })
