@@ -43,10 +43,15 @@ export class ImportService {
     }
 
     // 3. Fetch Context for Anomaly Engine
-    const members = await prisma.groupMember.findMany({
+    const members = (await prisma.groupMember.findMany({
       where: { groupId },
       include: { user: true },
-    })
+    })) as {
+      userId: string
+      user: { name: string; email: string }
+      joinedAt: Date
+      leftAt: Date | null
+    }[]
     
     const context: Context = {
       baseCurrency,
