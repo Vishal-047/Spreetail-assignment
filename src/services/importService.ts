@@ -1,4 +1,5 @@
-import { PrismaClient, Prisma, AnomalyType } from '@prisma/client'
+import { PrismaClient, Prisma } from '@prisma/client'
+import type { AnomalyType } from '../types/anomaly'
 import { parse } from 'csv-parse/sync'
 import { detectAnomalies, RawImportRow, Context, normalizeName } from './anomalyDetectionEngine'
 

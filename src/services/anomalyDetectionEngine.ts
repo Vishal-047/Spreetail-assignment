@@ -1,4 +1,4 @@
-import { AnomalyType } from '@prisma/client'
+import type { AnomalyType } from '../types/anomaly'
 
 export type RawImportRow = {
   date?: string
