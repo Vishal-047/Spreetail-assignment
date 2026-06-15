@@ -1,4 +1,6 @@
-import { PrismaClient } from '@prisma/client'
+import prismaPkg from '@prisma/client'
+
+const PrismaClient = (prismaPkg as any).PrismaClient
 
 const prisma = new PrismaClient()
 
